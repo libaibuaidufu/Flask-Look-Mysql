@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Flask_Look_Mysql',
-    version='1.0.0',
+    version='1.0.1',
     keywords='flask look mysql html',
     description='a look mysql html',
     license='MIT License',
