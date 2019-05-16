@@ -2,17 +2,17 @@
 
 ##### 安装
 ```
-pip install flask-look-models
+pip install flask-look-mysql
 ```
 
 ##### 使用
 ```python
 from flask import Flask
-from flask_look_models import FlaskLookModels
+from flask_look_mysql import FlaskLookMysql
 
 app = Flask(__name__)
 app.config["URL_LIST"] = ["mysql://root:123456@127.0.0.1:3306/metest"]
-FlaskLookModels(app)
+FlaskLookMysql(app)
 
 if __name__ == '__main__':
     app.run()
