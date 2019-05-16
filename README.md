@@ -1,5 +1,7 @@
 #### 一个 通过 flask 查看 mysql 表结构 的插件
 
+##### 目前只支持mysql
+
 ##### 安装
 ```
 pip install flask-look-mysql
