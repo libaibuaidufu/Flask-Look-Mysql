@@ -12,7 +12,7 @@ import pymysql
 from flask import render_template, Blueprint
 
 
-class FlaskLookModels(object):
+class FlaskLookMysql(object):
     def __init__(self, app, blueprint_api="db", url_prefix="/db", index="db"):
         self.__app = app
         self.__path = os.path.dirname(__file__)
