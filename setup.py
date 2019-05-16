@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Flask_Look_Models',
+    name='Flask_Look_Mysql',
     version='1.0.0',
-    keywords='flask look model html',
+    keywords='flask look mysql html',
     description='a look mysql html',
     license='MIT License',
-    url='https://github.com/libaibuaidufu/flask_look_models',
+    url='https://github.com/libaibuaidufu/Flask-Look-Mysql',
     author='libaibuaidufu',
     author_email='dfk@gmail.com',
     packages=find_packages(),
