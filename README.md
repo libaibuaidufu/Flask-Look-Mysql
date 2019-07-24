@@ -21,4 +21,4 @@ if __name__ == '__main__':
 
 # http://127.0.0.1:5000/db/metest
 ```
- ![image](https://github.com/libaibuaidufu/Flask-Look-Mysql/blob/master/doc_img.png)
+ ![image](https://github.com/libaibuaidufu/Flask-Look-Mysql/blob/master/doc_img.png) 
