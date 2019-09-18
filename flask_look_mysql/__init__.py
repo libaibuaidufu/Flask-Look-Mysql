@@ -13,7 +13,7 @@ from flask import render_template, Blueprint
 
 
 class FlaskLookMysql(object):
-    def __init__(self, app, blueprint_api="db", url_prefix="/db", index="db"):
+    def __init__(self, app, blueprint_api="flask_look_mysql", url_prefix=None, index=None):
         self._app = app
         self._path = os.path.dirname(__file__)
         self._temp_path = os.path.join(self._path, "templates")
@@ -86,7 +86,7 @@ class FlaskLookMysql(object):
         else:
             rowView = {}
         self._db.close()
-        return render_template("demos.html", rows=rowTable, dbName=dbName, rowView=rowView)
+        return render_template("index.html", rows=rowTable, dbName=dbName, rowView=rowView)
 
     def executeSql(self, sqlStr):
         try:
