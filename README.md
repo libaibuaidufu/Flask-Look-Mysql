@@ -14,7 +14,7 @@ from flask_look_mysql import FlaskLookMysql
 
 app = Flask(__name__)
 app.config["URL_LIST"] = ["mysql://root:123456@127.0.0.1:3306/metest"]
-FlaskLookMysql(app)
+FlaskLookMysql(app, blueprint_api="db", url_prefix="/db", index="db") # 注意配置 避免冲突
 
 if __name__ == '__main__':
     app.run()

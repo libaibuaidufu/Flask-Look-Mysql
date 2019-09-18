@@ -9,8 +9,8 @@ from flask import Flask
 from flask_look_mysql import FlaskLookMysql
 
 app = Flask(__name__)
-app.config["URL_LIST"] = ["mysql://root:123456@127.0.0.1:3306/metest"]
-FlaskLookMysql(app)
+app.config["URL_LIST"] = ['mysql+pymysql://root:123456@127.0.0.1:3306/boss-item?charset=utf8']
+FlaskLookMysql(app, blueprint_api="db", url_prefix="/test", index="db") # 注意配置 避免冲突
 
 if __name__ == '__main__':
     app.run()

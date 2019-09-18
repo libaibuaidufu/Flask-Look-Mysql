@@ -14,31 +14,31 @@ from flask import render_template, Blueprint
 
 class FlaskLookMysql(object):
     def __init__(self, app, blueprint_api="db", url_prefix="/db", index="db"):
-        self.__app = app
-        self.__path = os.path.dirname(__file__)
-        self.__temp_path = os.path.join(self.__path, "templates")
-        self.__db_api = Blueprint(blueprint_api, __name__, url_prefix=url_prefix, template_folder=self.__temp_path)
-        self.__db_api.add_url_rule('/<string:name>', index, self.v2_listModel)
-        self.__app.register_blueprint(self.__db_api)
-        self.db_api = self.__db_api
+        self._app = app
+        self._path = os.path.dirname(__file__)
+        self._temp_path = os.path.join(self._path, "templates")
+        self._db_api = Blueprint(blueprint_api, __name__, url_prefix=url_prefix, template_folder=self._temp_path)
+        self._db_api.add_url_rule('/<string:name>', index, self.v2_listModel)
+        self._app.register_blueprint(self._db_api)
+        self.db_api = self._db_api
         self._url_dict = {}
         self.get_url_mysql()
 
     def get_url_mysql(self):
-        if "URL_LIST" not in self.__app.config.keys():
+        if "URL_LIST" not in self._app.config.keys():
             logging.warning("URL_LIST is None")
             return
-        self._urls_list = self.__app.config.get("URL_LIST", [])
+        self._urls_list = self._app.config.get("URL_LIST", [])
 
         for _url in self._urls_list:
             try:
-                url_list = _url.rsplit("@", 1)
-                _user_pwd = url_list[0][8:].split(":", 1)
+                url_list = _url.split("@", 1)
+                _user_pwd = url_list[0].split("/", 2)[-1].split(":",1)
                 _user = _user_pwd[0]
                 _pwd = _user_pwd[-1]
                 _host = url_list[-1].split("/")[0].split(":")[0]
                 _port = int(url_list[-1].split("/")[0].split(":")[-1])
-                _dbname = url_list[-1].split("/")[-1]
+                _dbname = url_list[-1].split("/")[-1].split("?",1)[0]
                 _url_dict = {
                     'host': _host,
                     'port': _port,
@@ -63,7 +63,7 @@ class FlaskLookMysql(object):
     def v2_listModel(self, name):
         if name not in self._url_dict.keys():
             return "hello,world!"
-        self.__db = self.conenct_mysql(dbname=name)
+        self._db = self.conenct_mysql(dbname=name)
         dbName = name
         all_tableStr = """select table_name,table_comment,TABLE_TYPE from information_schema.tables where TABLE_TYPE in ('BASE TABLE','VIEW') and  table_schema='{}'""".format(
             dbName)
@@ -90,8 +90,8 @@ class FlaskLookMysql(object):
 
     def executeSql(self, sqlStr):
         try:
-            self.__db.execute(sqlStr)
-            queryList = self.__db.fetchall()
+            self._db.execute(sqlStr)
+            queryList = self._db.fetchall()
             return queryList
         except Exception as  e:
             print(e)
