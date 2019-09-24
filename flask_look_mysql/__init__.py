@@ -7,9 +7,26 @@
 import logging
 import os
 from collections import OrderedDict
+from functools import wraps
 
 import pymysql
 from flask import render_template, Blueprint
+from werkzeug.contrib.cache import SimpleCache
+
+c = SimpleCache()
+
+
+def cache_data(fn):
+    @wraps(fn)
+    def _dec(*args, **kwargs):
+        name = kwargs.get("name", None)
+        data = c.get(name)
+        if not data:
+            data = fn(*args, **kwargs)
+            c.set(name, data, timeout=60)
+        return data
+
+    return _dec
 
 
 class FlaskLookMysql(object):
@@ -33,12 +50,12 @@ class FlaskLookMysql(object):
         for _url in self._urls_list:
             try:
                 url_list = _url.split("@", 1)
-                _user_pwd = url_list[0].split("/", 2)[-1].split(":",1)
+                _user_pwd = url_list[0].split("/", 2)[-1].split(":", 1)
                 _user = _user_pwd[0]
                 _pwd = _user_pwd[-1]
                 _host = url_list[-1].split("/")[0].split(":")[0]
                 _port = int(url_list[-1].split("/")[0].split(":")[-1])
-                _dbname = url_list[-1].split("/")[-1].split("?",1)[0]
+                _dbname = url_list[-1].split("/")[-1].split("?", 1)[0]
                 _url_dict = {
                     'host': _host,
                     'port': _port,
@@ -60,6 +77,7 @@ class FlaskLookMysql(object):
         self._db_cur = self._db.cursor()
         return self._db_cur
 
+    @cache_data
     def v2_listModel(self, name):
         if name not in self._url_dict.keys():
             return "hello,world!"

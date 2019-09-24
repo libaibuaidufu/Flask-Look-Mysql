@@ -9,7 +9,7 @@ from flask import Flask
 from flask_look_mysql import FlaskLookMysql
 
 app = Flask(__name__)
-app.config["URL_LIST"] = ['mysql+pymysql://root:123456@127.0.0.1:3306/boss-item?charset=utf8']
+app.config["URL_LIST"] = ['mysql+pymysql://root:123456@127.0.0.1:3306/tset?charset=utf8']
 FlaskLookMysql(app) # 注意配置 避免冲突
 
 if __name__ == '__main__':
