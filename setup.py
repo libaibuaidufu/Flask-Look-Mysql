@@ -10,15 +10,21 @@ from setuptools import setup, find_packages
 
 setup(
     name='Flask_Look_Mysql',
-    version='1.0.2',
+    version='1.0.5',
     keywords='flask look mysql html',
     description='a look mysql html',
     license='MIT License',
     url='https://github.com/libaibuaidufu/Flask-Look-Mysql',
     author='libaibuaidufu',
-    author_email='dfk@gmail.com',
+    author_email='libaibuaidufu@gmail.com',
     packages=find_packages(),
     include_package_data=True,
     platforms='any',
     install_requires=["flask", "pymysql"],
 )
+
+"""
+python setup.py sdist bdist_wheel 
+twine upload dist/*
+# or python setup.py sdist bdist_wheel upload
+"""
