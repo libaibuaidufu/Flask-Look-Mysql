@@ -10,8 +10,8 @@ from collections import OrderedDict
 from functools import wraps
 
 import pymysql
+from cachelib.simple import SimpleCache
 from flask import render_template, Blueprint
-from werkzeug.contrib.cache import SimpleCache
 
 c = SimpleCache()
 

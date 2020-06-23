@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Flask_Look_Mysql',
-    version='1.0.5',
+    version='1.0.6',
     keywords='flask look mysql html',
     description='a look mysql html',
     license='MIT License',
@@ -20,7 +20,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms='any',
-    install_requires=["flask", "pymysql"],
+    install_requires=["flask", "pymysql", "cachelib"],
 )
 
 """

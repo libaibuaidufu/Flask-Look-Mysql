@@ -21,4 +21,8 @@ if __name__ == '__main__':
 
 # http://127.0.0.1:5000/db/metest
 ```
+##### 更新
+###### 2020-06-23
+更新支持werkzeug 最新版，因最新版删除 werkzeug.contrib.cache，因此安装cachelib使用
+
  ![image](https://github.com/libaibuaidufu/Flask-Look-Mysql/blob/master/doc_img.png) 
